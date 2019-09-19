@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="default">
+<head>
+<title>Cadastro de Professores</title>
+</head>
+<body>
+    <div align=center>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <table border=1>
+            <tr>
+                <td align="right">Email</td>
+                <td align="left"><input type="text" name="email" />
+            </tr>
+            <tr>
+                <td align="right">Senha</td>
+                <td align="left"><input type="text" name="Senha"/>
+            </tr>
+            <tr>
+                <td align="center"><input type="submit" value="Logar"/>
+            </tr>
+</table>
+</form>
+</div>
+</body>
+</html>
