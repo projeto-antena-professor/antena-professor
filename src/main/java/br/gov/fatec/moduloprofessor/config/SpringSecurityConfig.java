@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.gov.fatec.moduloprofessor.service.MongoUserDetailService;
@@ -25,7 +26,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("password")).roles("PROFESSOR")
+             .withUser("user").password(passwordEncoder().encode("password")).roles("professor")
                 .and()
                 .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN");
         
@@ -37,15 +38,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
     	http
     	.csrf().disable()
         .authorizeRequests()
-        //.antMatchers("/admin/**").hasRole("ADMIN")
+        //.antMatchers("/**").hasRole("professor")
         //.antMatchers("/anonymous*").anonymous()
         //.antMatchers("/login*").permitAll()
-        .anyRequest().authenticated()
+        //.anyRequest().authenticated()
+        
         .and()
         .formLogin()
-        //.loginPage("/login.html")
+        .loginPage("/login.html")
+        .failureUrl("/login-error.html")
         //.loginProcessingUrl("/perform_login")
-        //.defaultSuccessUrl("/index.html", true)
+        .permitAll()
+        .defaultSuccessUrl("/index.html", true)
         //.failureUrl("/login.html?error=true")
         //.failureHandler(authenticationFailureHandler())
         .and()
@@ -55,9 +59,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
         //.logoutSuccessHandler(logoutSuccessHandler());
     }
     
+    @SuppressWarnings("deprecation")
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public static NoOpPasswordEncoder passwordEncoder() {
+    return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
     }
 }
 

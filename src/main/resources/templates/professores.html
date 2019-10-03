@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="default">
     <head>
-        <title>List de Professores</title>
+        <title>Lista de Professores</title>
     </head>
     <body>
     <div align=center>
@@ -19,14 +19,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="professor : ${professores}">
-                                <td><a th:text="${professor.nome}" th:href="@{'/prof/' + ${professor.professorId}}"></a></td>
-                                <td th:text="${professor.matricula}"></td>
-                                <td th:text="${professor.emailInstitucional}"></td>
-                                <td th:text="${professor.senha}"></td>
+                        <tr th:each="professor : ${professores}">
+                                <td><a th:text="${professor.professor.nome}" th:href="@{'/mostrar/' + ${professor.professor}}"></a></td>
+                                <td th:text="${professor.professor.matricula}"></td>
+                                <td th:text="${professor.professor.email}"></td>
+                                <td th:text="${professor.professor.senha}"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <a text="Página principal" href="/index.html"></a>
     </body>
 </html>

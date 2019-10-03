@@ -12,18 +12,28 @@
                 <table id="projeto-table" border="1">
                         <thead>
                             <tr>
-                                <th>Título</th>
-                                <th>Chave</th>
+                                <th>Titulo</th>
+                                <th>Descricao</th>
+                                <th>Tecnologias</th>
                                 <th>Fase</th>
-                                <th>Alunos</th>
+                                <th>Status</th>
+                                <th>Responsável CADI</th>
+                                <th>Professor Responsavel</th>
+                                <th>Empresario</th>
+                                <th>Chave</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="projeto : ${projetos}">
-                                <td><a th:text="${projeto.titulo}"></a></td>
-                                <td><a th:text="${projeto.chave}"></a></td>
-                                <td th:text="${projeto.fase}"></td>
-                                <td th:text="${projeto.alunos}"></td>
+                                <td><a th:text="${projeto.projeto.titulo}"></a></td>
+                                <td><a th:text="${projeto.projeto.descricao_breve}"></a></td>
+                                <td><a th:text="${projeto.projeto.descricao_tecnologias}"></a></td>
+                                <td><a  th:text="${projeto.projeto.fase}"></td>
+                                <td><a  th:text="${projeto.projeto.status.negado}"></td>
+                                <td><a  th:text="${projeto.projeto.responsavel_cadi}"></td>
+                                <td><a  th:text="${projeto.projeto.responsavel_professor}"></td>
+                                <td><a  th:text="${projeto.projeto.responsavel_empresario}"></td>
+                                <td> <a href="/gerarChave"> Gerar Chave </a></td>
                             </tr>
                         </tbody>
                     </table>

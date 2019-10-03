@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+    <head>
+        <title>Lista de Projetos</title>
+    </head>
+    <body>
+    <div align=center>
+	<h1>Lista de projetos</h1>
+                <table id="projeto-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Descrição</th>
+                                <th>Link Externo 1</th>
+                                <th>Link Externo 2</th>
+                                <th>Descrição Completa</th>
+                                <th>Tecnologias</th>
+                                <th>Fase</th>
+                                <th>Status</th>
+                                <th>Responsável CADI</th>
+                                <th>Professor Responsável</th>
+                                <th>Empresário</th>
+                                <th>Alunos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="projeto : ${projetos}">
+                                <td><a th:text="${projeto.projeto.titulo}"></a></td>
+                                <td><a th:text="${projeto.projeto.descricao_breve}"></a></td>
+                                <td><a th:text="${projeto.projeto.link_externo_1}"></a></td>
+                                <td><a th:text="${projeto.projeto.link_externo_2}"></a></td>
+                                <td><a th:text="${projeto.projeto.descricao_completa}"></a></td>
+                                <td><a th:text="${projeto.projeto.descricao_tecnologias}"></a></td>
+                                <td th:text="${projeto.projeto.fase}"></td>
+                                <td th:text="${projeto.projeto.status.negado}" - th:text="${projeto.projeto.status.motivo}"></td>
+                                <td th:text="${projeto.projeto.responsavel_cadi}"></td>
+                                <td th:text="${projeto.projeto.responsavel_professor}"></td>
+                                <td th:text="${projeto.projeto.responsavel_empresario}"></td>
+                                <td th:text="${projeto.projeto.alunos}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div align=center>
+                <button value="Gerar chave"></button>
+                </div>
+    </body>
+</html>
